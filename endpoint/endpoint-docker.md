@@ -2,8 +2,8 @@
 
 ## How to use this image
 
-The Docker image `ontop/ontop-endpoint` is for fast setting up an Ontop SPARQL endpoint.
-One can either use `ontop/ontop-endpoint` directly, or create a dedicated image based on this image.
+The Docker image [ontop/ontop-endpoint](https://cloud.docker.com/u/ontop/repository/docker/ontop/ontop-endpoint) is for fast setting up an Ontop SPARQL endpoint.
+One can either use this image directly, or create a dedicated image based on this image.
 
 The required files in this tutorial are in the working directory:
 
