@@ -53,7 +53,7 @@ Now we can open <http://localhost:8080/> to test a SPARQL query.
 
 ### Create a dedicated image
 
-In case we want to deploy a self-contained image, we can write a complete `Dockerfile`:
+In case we want to deploy a self-contained image, we can write a complete [`Dockerfile`](Dockerfile):
 
 ```dockerfile
 FROM ontop/ontop-endpoint
@@ -62,12 +62,12 @@ COPY input/university-complete.ttl input/university-complete.obda input/universi
 COPY jdbc/h2-1.4.196.jar jdbc/
 EXPOSE 8080
 ENTRYPOINT java -cp ./lib/*:./jdbc/* -Dlogback.configurationFile=file:./log/logback.xml \
-        it.unibz.inf.ontop.endpoint.OntopEndpointApplication \
+        it.unibz.inf.ontop.cli.Ontop endpoint \
         --ontology=input/university-complete.ttl \
         --mapping=input/university-complete.obda \
         --properties=input/university-complete.docker.properties \
         --cors-allowed-origins=http://yasgui.org \
-        --lazy
+        --lazy # if needed
 ```
 
 Then, run the commands to build and run the Docker image:
