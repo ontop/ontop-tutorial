@@ -24,7 +24,7 @@ Program
 1. [Basics of OBDA System Modeling and Usage](basic)
     * [Mapping the first data source](basic/university-1.md)
     * [Mapping the second data source](basic/university-2.md)
-2. Deploying a SPARQL endpoint
+2. [Deploying a SPARQL endpoint](endpoint)
     * [Using Ontop Tomcat bundle](endpoint/endpoint-tomcat.md)
     * [Using Ontop CLI](endpoint/endpoint-cli.md)
     * [Using Ontop Docker image](endpoint/endpoint-docker.md)
