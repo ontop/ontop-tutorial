@@ -33,4 +33,4 @@ Program
     * [Role of foreign keys](mapping/foreign-keys.md)
     * [Choice of the URI templates](mapping/uri-templates.md)
     * [Bonus: existential reasoning](mapping/existential.md)
-4. Using Ontop with a federation layer
+4. Federating multiple databases
