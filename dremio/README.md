@@ -55,4 +55,8 @@ Now we see the tables in *university-session1*:
 
 Now we add the *uni2* data as a JSON data source:
 
-![Add ]
+![Add JSON](add-json.png)
+
+The *uni2* JSON data can be seen as follows:
+
+![JSON data](see-json.png)
