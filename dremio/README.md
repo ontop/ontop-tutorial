@@ -42,7 +42,7 @@ Now we are ready to add our database as a new datasource into Dremio:
 
 Select PostgreSQL:
 
-![Select PostgreSQL](add-postgres.png=250x)
+![Select PostgreSQL](add-postgres.png)
 
 Enter the required JDBC information:
 
@@ -55,6 +55,9 @@ Now we see the tables in *university-session1*:
 Save the tables as datasets into *integrated-university-data* space as follows:
 
 ![Uni1 course dataset](postgres-uni1-course-dataset.png)
+
+Save the other datasets in similar manner.
+
 
 Now we add the *uni2* data as a JSON data source:
 
