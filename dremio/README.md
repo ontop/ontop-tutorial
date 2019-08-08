@@ -101,7 +101,7 @@ SELECT * FROM (
 ORDER BY pid
 ``` 
 
-Finally create *uni2-teaching* dataset wit the following SQL:
+Create *uni2-teaching* dataset with the following SQL:
 
 ```sql
 SELECT cid, uni2.lecturer.pid AS pid
@@ -110,4 +110,64 @@ FROM uni2
 
 Now we can list all the datasets we saved in the *integrated-university-data* space:
 
-![Detaset List](dataset-list.png)
+![Dataset List](dataset-list.png)
+
+Finally we are ready to connect Dremio to Ontop. Dremio can be connected to Ontop through its JDBC interface. By following the instructions provided in [here](https://docs.dremio.com/drivers/dremio-jdbc-driver.html), we provide  to Ontop the following JDBC connection information in a ".properties file" for a Dremio instance running on the localhost:
+
+```
+jdbc.url=jdbc\:dremio\:direct\=localhost\:31010;schema\=integrated_university_data
+jdbc.driver=com.dremio.jdbc.Driver
+jdbc.user=dremiotest
+jdbc.password=dremiotest
+``` 
+Dremio JDBC driver can be downloaded from [here](https://www.dremio.com/drivers/). 
+
+Over an OBDA setting containing the following mapping assertions:
+
+```
+[PrefixDeclaration]
+:		http://example.org/voc#
+ex:		http://example.org/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+foaf:		http://xmlns.com/foaf/0.1/
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+mappingId	uni1-student
+target		:uni1/student/{s_id} a :Student ; foaf:firstName {first_name}^^xsd:string ; foaf:lastName {last_name}^^xsd:string . 
+source		SELECT * FROM "uni1-student"
+
+mappingId	uni1-attends
+target		:uni1/student/{s_id} :attends :uni1/course/{c_id}/{title} .
+source		SELECT "uni1-registration".s_id, "uni1-course".c_id, "uni1-course".title FROM "uni1-registration", "uni1-course" WHERE "uni1-registration".c_id = "uni1-course".c_id
+
+mappingId	uni2-student
+target		:uni2/student/{pid} a :Student ; foaf:firstName {fname}^^xsd:string ; foaf:lastName {lname}^^xsd:string . 
+source		SELECT DISTINCT "uni2-person".pid, "uni2-person".fname, "uni2-person".lname FROM "uni2-person", "uni2-registration" WHERE "uni2-person".pid = "uni2-registration".pid
+
+mappingId	uni2-attends
+target		:uni2/student/{pid} :attends :uni2/course/{cid}/{course} .
+source		SELECT "uni2-registration".pid, "uni2-course".cid, "uni2-course".course FROM "uni2-registration", "uni2-course" WHERE "uni2-registration".cid = "uni2-course".cid
+]]
+```
+
+Now we can execute the following SPARQL query on Ontop:
+
+```sparql
+PREFIX : <http://example.org/voc#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT DISTINCT ?course ?firstName ?lastName {
+  ?student :attends ?course .
+  ?student foaf:firstName ?firstName .
+  ?student foaf:lastName ?lastName .
+}
+```
+
+The results:
+
+![SPARQL](sparql.png)
