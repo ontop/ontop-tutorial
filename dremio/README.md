@@ -12,9 +12,11 @@ Before you proceed, we recommend you to see the following tutorials provided by 
 As a first step, by following the instructions in [Working with your first dataset](https://www.dremio.com/tutorials/working-with-your-first-dataset/), we create a *space* named **integrated_university_data** as shown below.
 
 Add new data space:
+
 ![Add data space](add-space.png) 
 
 Save the new data space:
+
 ![Save data space](save-space.png)
 
 It will be our data space in which we integrate data from various sources.
