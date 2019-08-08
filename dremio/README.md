@@ -42,7 +42,7 @@ Now we are ready to add our database as a new datasource into Dremio:
 
 Select PostgreSQL:
 
-![Select PostgreSQL](add-postgres.png)
+![Select PostgreSQL](add-postgres.png=250x)
 
 Enter the required JDBC information:
 
