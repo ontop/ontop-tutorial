@@ -54,7 +54,7 @@ Now we see the tables in *university-session1*:
 
 Save the tables as datasets into *integrated-university-data* space as follows:
 
-![Uni1 course dataset](postgres-uni1-course-dataset.png)
+![Uni1 registration dataset](postgres-uni1-registration-dataset.png)
 
 Save the other datasets in similar manner.
 
@@ -107,3 +107,7 @@ Finally create *uni2-teaching* dataset wit the following SQL:
 SELECT cid, uni2.lecturer.pid AS pid
 FROM uni2
 ```
+
+Now we can list all the datasets we saved in the *integrated-university-data* space:
+
+![Detaset List](dataset-list.png)
