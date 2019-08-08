@@ -9,13 +9,17 @@ Before you proceed, we recommend you to see the following tutorials provided by 
   2. [Working with your first dataset](https://www.dremio.com/tutorials/working-with-your-first-dataset/)
 
 
-As a first step, by following the instructions in [Working with your first dataset](https://www.dremio.com/tutorials/working-with-your-first-dataset/), we create a *space* named **integrated_university_data** as shown below:
+As a first step, by following the instructions in [Working with your first dataset](https://www.dremio.com/tutorials/working-with-your-first-dataset/), we create a *space* named **integrated_university_data** as shown below.
 
-![Add data space](add-space.png) ![Save data space](save-space.png)
+Add new data space:
+![Add data space](add-space.png) 
+
+Save the new data space:
+![Save data space](save-space.png)
 
 It will be our data space in which we integrate data from various sources.
 
-The *uni1* data is contained in a PostgreSQL database named *university-session1*. Either you can download the SQL script that generates the database from [here](postgres-docker/db/university-session1.sql) an load it to your local PostgreSQL server, or you can run the docker container that we provide by executing the following script:
+The *uni1* data is contained in a PostgreSQL database named *university-session1*. Either you can download the SQL script that generates the database from [here](postgres-docker/db/university-session1.sql) and load it to your local PostgreSQL server, or you can run the docker container that we provide by executing the following script:
 
 ```bash
 IMAGENAME="university-db"
@@ -30,7 +34,7 @@ The database *university-session1* becomes accesable with the following JDBC URL
 jdbc:postgresql://localhost:5435/university-session1?user=postgres&password=postgres
 ``` 
 
-Now we add new datasource into Dremio:
+Now we are ready to add our database as a new datasource into Dremio:
 
 ![Add source](add-source.png)
 
@@ -47,3 +51,6 @@ Now we see the tables in *university-session1*:
 
 ![Tables](postgres-tables.png)
 
+Now we add the *uni2* data as a JSON data source:
+
+![Add ]
