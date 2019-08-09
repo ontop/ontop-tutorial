@@ -17,7 +17,7 @@ Add new data space:
 
 Save the new data space:
 
-<center><img src="save-space.png" width="600"/></center>
+<img src="save-space.png" width="600"/>
 
 It will be our data space in which we integrate data from various sources.
 
@@ -42,7 +42,7 @@ Now we are ready to add our database as a new datasource into Dremio:
 
 Select PostgreSQL:
 
-![Select PostgreSQL](add-postgres.png)
+<img src="add-postgres.png" width="600"/>
 
 Enter the required JDBC information:
 
@@ -50,7 +50,7 @@ Enter the required JDBC information:
 
 Now we see the tables in *university-session1*:
 
-![Tables](postgres-tables.png)
+<img src="postgres-tables.png" width="600"/>
 
 Save the tables as datasets into *integrated-university-data* space as follows:
 
@@ -61,11 +61,11 @@ Save the other datasets in similar manner.
 
 Now we add the *uni2* data as a JSON data source:
 
-![Add JSON](add-json.png)
+<img src="add-json.png" width="600"/>
 
 The *uni2* JSON data can be seen as follows:
 
-![JSON data](see-json.png)
+<img src="see-json.png" width="600"/>
 
 JSON files usually contain nested data. However, Ontop can not directly query nested data. For this reason, in order to make our JSON data queryable by Ontop, first we need to extract relevant group of elements, and save these groups as datasets. 
 
@@ -110,7 +110,7 @@ FROM uni2
 
 Now we can list all the datasets we saved in the *integrated-university-data* space:
 
-![Dataset List](dataset-list.png)
+<img src="dataset-list.png" width="600"/>
 
 Finally we are ready to connect Dremio to Ontop. Dremio can be connected to Ontop through its JDBC interface. By following the instructions provided in [here](https://docs.dremio.com/drivers/dremio-jdbc-driver.html), we provide  to Ontop the following JDBC connection information in a ".properties file" for a Dremio instance running on the localhost:
 
@@ -170,4 +170,4 @@ SELECT DISTINCT ?course ?firstName ?lastName {
 
 The results:
 
-![SPARQL](sparql.png)
+<img src="sparql.png" width="600"/>
