@@ -52,7 +52,7 @@ Now we see the tables in *university-session1*:
 
 <img src="img/postgres-tables.png" width="600"/>
 
-Save the tables as datasets into *integrated-university-data* space as follows:
+We add the table *course-registration* as dataset into *integrated-university-data*. We rename it to *uni1-registration*.
 
 <img src="img/postgres-uni1-registration-dataset.png" width="600"/>
 
