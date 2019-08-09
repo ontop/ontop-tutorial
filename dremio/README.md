@@ -13,7 +13,7 @@ As a first step, by following the instructions in [Working with your first datas
 
 Add new data space:
 
-![Add data space](add-space.png) 
+<img src="add-space.png" width="600"/>
 
 Save the new data space:
 
@@ -38,7 +38,7 @@ jdbc:postgresql://localhost:5435/university-session1?user=postgres&password=post
 
 Now we are ready to add our database as a new datasource into Dremio:
 
-![Add source](add-source.png)
+<img src="add-source.png" width="300"/>
 
 Select PostgreSQL:
 
