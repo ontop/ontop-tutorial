@@ -79,6 +79,10 @@ FROM (
 ) T
 ```
 
+*Save As* the data set with the name *uni2-registration*.
+
+<img src="img/uni2-registration.png" width="600"/>
+
 Create a dataset named *uni2-course* in a similar manner:
 
 ```sql
