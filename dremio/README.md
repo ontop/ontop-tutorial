@@ -89,7 +89,7 @@ Create a dataset named *uni2-course* in a similar manner:
 SELECT course, cid FROM uni2
 ``` 
 
-Create a *uni2-person* dataset with a bit more involved SQL that contains both students and lecturers:
+Create a *uni2-person* dataset with a bit more involved SQL that unions both students and lecturers:
 
 ```sql
 SELECT * FROM (
