@@ -17,7 +17,7 @@ Add new data space:
 
 Save the new data space:
 
-<img src="save-space.png" class="center" width="600"/>
+<img src="save-space.png" align="middle" width="600"/>
 
 It will be our data space in which we integrate data from various sources.
 
