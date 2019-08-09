@@ -17,7 +17,7 @@ Add new data space:
 
 Save the new data space:
 
-![Save data space](save-space.png)
+![Save data space](save-space.png =250x)
 
 It will be our data space in which we integrate data from various sources.
 
