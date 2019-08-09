@@ -46,7 +46,7 @@ Select PostgreSQL:
 
 Enter the required JDBC information:
 
-![PostgreSQL JDBC information](postgres-info.png)
+<img src="postgres-info.png" width="600"/>
 
 Now we see the tables in *university-session1*:
 
@@ -54,7 +54,7 @@ Now we see the tables in *university-session1*:
 
 Save the tables as datasets into *integrated-university-data* space as follows:
 
-![Uni1 registration dataset](postgres-uni1-registration-dataset.png)
+<img src="postgres-uni1-registration-dataset.png" width="600"/>
 
 Save the other datasets in similar manner.
 
