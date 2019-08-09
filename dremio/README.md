@@ -13,7 +13,7 @@ As a first step, by following the instructions in [Working with your first datas
 
 Add new data space:
 
-<img src="add-space.png" width="600"/>
+<img src="add-space.png" width="300"/>
 
 Save the new data space:
 
