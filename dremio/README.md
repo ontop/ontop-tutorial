@@ -79,6 +79,12 @@ FROM (
 ) T
 ```
 
+The following SQL expression flattens the array of enrollers:
+
+```sql
+flatten(enrollers) AS enrollers
+```
+
 *Save As* the data set with the name *uni2-registration*.
 
 <img src="img/uni2-registration.png" width="600"/>
