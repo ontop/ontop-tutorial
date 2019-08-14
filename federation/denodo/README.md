@@ -5,7 +5,7 @@ NB: You might also consult the following presentation, which shows screenshots f
 some of the steps described below:
 <https://github.com/ontop/ontop-examples/blob/master/cikm-2018-tutorial/4-obdi-demo.pdf>
 
-### Set up Denodo.
+### 1. Set up Denodo.
 
 #### Download Denodo Express 
 
@@ -27,7 +27,7 @@ Note: environment variable `JAVA_HOME` must be set
 - Press 'LAUNCH' button
 - Login with 'admin' 'admin'
 
-### Configure datasets in Dremio
+### 2. Configure datasets in Dremio
 
 NB: instead of doing the following step by step, you can also load `bzopendata.sql` directly to Denodo
 
@@ -42,14 +42,14 @@ Data route 'HTTP Client' -> Configure button
 #### Connect datasources
 
 - Weather Stations:
-    name: stations
+    name: stations \
     Web API: http://daten.buergernetz.bz.it/services/meteo/v1/stations
 - Sensor Data:
-    name: sensors
+    name: sensors \
     Web API: http://daten.buergernetz.bz.it/services/meteo/v1/sensors
 (press Save icon for each source)
 
-### Configure datasources
+### 3. Configure datasources
 
 Open the datasources in a web browser to understand their structure.
 
@@ -70,7 +70,7 @@ Right click f_stations -> New -> select \
 Select Output tab and specify what to keep in the output \
 Unfold properties and right-click each subfield and select 'Project field ...'
 
-### Configure Ontop-protege to use a Denodo datasource
+### 4. Configure Ontop-protege to use a Denodo datasource
 
 Install the Denodo JDBC driver:
 - Protege -> Preferences -> JDBC Drivers tab -> Add
@@ -85,7 +85,7 @@ For the connection in your Datasource manager use:
 - Database Password: `admin`
 - Driver class: `com.denodo.vdp.jdbc.Driver`
 
-### Create the ontology and mapping and and try some SPARQL queries
+### 5. Create the ontology and mapping and and try some SPARQL queries
 
 You can use directly the files we have prepared
 
@@ -97,7 +97,7 @@ You can use directly the files we have prepared
 └── bzweather.q
 ```
 
-### Setup a SPARQL endpoint with Command Line Interface
+### 6. Setup a SPARQL endpoint with Command Line Interface
 
 #### Configure Ontop CLI
 
@@ -113,7 +113,7 @@ Run the Ontop CLI:
 ontop endpoint -t bzweather.owl -m bzweather.obda -p bzweather.properties --cors-allowed-origins='*'
 ```
 
-5.2 Access SPARQL endpoint
+#### Access SPARQL endpoint
 
 Open <http://localhost:8080/>
 
