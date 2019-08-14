@@ -34,5 +34,6 @@ Program
     * [Choice of the URI templates](mapping/uri-templates.md)
     * [Bonus: existential reasoning](mapping/existential.md)
 4. [Federating multiple databases](federation)
-    * [Dremio](federation/dremio/README.md)
-    * [Denodo](federation/denodo/README.md)
+    * [Ontop with Dremio](federation/dremio/README.md)
+    * [Ontop with Denodo](federation/denodo/README.md)
+5. [Ontop API](api)
