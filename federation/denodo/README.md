@@ -5,15 +5,18 @@ NB: You might also consult the following presentation, which shows screenshots f
 some of the steps described below:
 <https://github.com/ontop/ontop-examples/blob/master/cikm-2018-tutorial/4-obdi-demo.pdf>
 
-1. Set up Denodo.
+### Set up Denodo.
 
-1.1 Download Denodo Express from
-<https://www.denodo.com/en/denodo-platform/denodo-express>
+#### Download Denodo Express 
+
+Download it from <https://www.denodo.com/en/denodo-platform/denodo-express>
 (register, download the platform and the licence file)
-Unzip the file and run the installer.
-Note: environment variable JAVA_HOME must be set
 
-1.2 Running Denodo
+Unzip the file and run the installer.
+
+Note: environment variable `JAVA_HOME` must be set
+
+#### Running Denodo
 
 ```console
 /Applications/DenodoPlatform7.0/bin/DenodoPlatform.sh
@@ -24,11 +27,11 @@ Note: environment variable JAVA_HOME must be set
 - Press 'LAUNCH' button
 - Login with 'admin' 'admin'
 
-2. Configure datasets in Dremio
+### Configure datasets in Dremio
 
 NB: instead of doing the following step by step, you can also load `bzopendata.sql` directly to Denodo
 
-2.1 Create database
+#### Create database
 
 -> Administration -> Database Management -> New
 Call the database e.g. bzopendata (leave the rest to the defaults)
@@ -36,7 +39,7 @@ Call the database e.g. bzopendata (leave the rest to the defaults)
 Right-clik bzopendata database -> New -> Data Source -> JSON
 Data route 'HTTP Client' -> Configure button
 
-2.2 Connect datasources
+#### Connect datasources
 
 - Weather Stations:
     name: stations
@@ -46,28 +49,28 @@ Data route 'HTTP Client' -> Configure button
     Web API: http://daten.buergernetz.bz.it/services/meteo/v1/sensors
 (press Save icon for each source)
 
-2.3 Configure datasources
+### Configure datasources
 
 Open the datasources in a web browser to understand their structure.
 
 For each datasource: Create base view
 - for stations: use default Tuple root
-- for sensors: use Tuple root: /JSONFile/JSONArray (click on checkbox JSON root)
+- for sensors: use Tuple root: `/JSONFile/JSONArray` (click on checkbox JSON root)
 
 For stations, try to run 'Execution panel' button, then Execute
 
 We get only one result --> We need to flatten the data.
 
-Right click {}stations -> New -> flatten
-Enlarge window with data
-Right click features -> Flatten array 'features'
+Right click {}stations -> New -> flatten \
+Enlarge window with data \
+Right click features -> Flatten array 'features' \
 Save the result, which creates a new view f_stations
 
-Right click f_stations -> New -> select
-Select Output tab and specify what to keep in the output
+Right click f_stations -> New -> select \
+Select Output tab and specify what to keep in the output \
 Unfold properties and right-click each subfield and select 'Project field ...'
 
-3. Configure Ontop-protege to use a Denodo datasource
+### Configure Ontop-protege to use a Denodo datasource
 
 Install the Denodo JDBC driver:
 - Protege -> Preferences -> JDBC Drivers tab -> Add
@@ -82,8 +85,7 @@ For the connection in your Datasource manager use:
 - Database Password: `admin`
 - Driver class: `com.denodo.vdp.jdbc.Driver`
 
-
-4. Create the ontology and mapping and and try some SPARQL queries
+### Create the ontology and mapping and and try some SPARQL queries
 
 You can use directly the files we have prepared
 
@@ -95,9 +97,9 @@ You can use directly the files we have prepared
 └── bzweather.q
 ```
 
-5. Setup a SPARQL endpoint with Command Line Interface
+### Setup a SPARQL endpoint with Command Line Interface
 
-5.1 Configure Ontop CLI
+#### Configure Ontop CLI
 
 Add the JDBC denodo driver for the Ontop CLI:
 
@@ -131,6 +133,6 @@ SELECT *
 LIMIT 100
 ```
 
-5.3 Visualize the results using a simple webpage using YASGUI (which is part of
-    the endpoint)
+<!-- 5.3 Visualize the results using a simple webpage using YASGUI (which is part of
+    the endpoint) -->
 
