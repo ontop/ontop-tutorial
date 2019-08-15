@@ -7,7 +7,7 @@ Procedure:
 
 1. Download and unzip the Tomcat bundle `ontop-tomcat-bundle-[version].zip` from [GitHub](https://github.com/ontop/ontop/releases) or [SourceForge](https://sourceforge.net/projects/ontop4obda/files/)
 2. Copy the driver file of H2 [`jdbc/h2-1.4.196.jar`](jdbc/h2-1.4.196.jar) to the `lib` directory of tomcat  
-3. Start tomcat from the *bin folder* using the commands: 
+3. Start tomcat from the *`bin` folder* using the commands: 
 	* On Mac/Linux: using the terminal run `sh catalina.sh run`.
 	* On Windows: click on the executable `startup.bat`.
 4. Connect to RDF4J Workbench at http://localhost:8080/rdf4j-workbench/ .
@@ -17,18 +17,18 @@ Procedure:
 
 1. The files needed are under the [input](input) directory:
 	- the OWL ontology file [input/university-complete.ttl](input/university-complete.ttl)
-	- the mapping file [input/university-complete.obda](input/university-complete.obda),  
-	- the properties file [input/university-complete.properties](input/university-complete.properties) .
+	- the mapping file [input/university-complete.obda](input/university-complete.obda)
+	- the properties file [input/university-complete.properties](input/university-complete.properties) 
 
 2. Click on *New repository*
   * Select *Ontop Virtual RDF Store* from the list.
-  * Give an ID to your new repository (ex: `Session1Repo`).
-  * Give optionally also a descriptive title (ex: Universities Repository).
+  * Give an ID to your new repository (ex: `Session1Repo`)
+  * Give optionally also a descriptive title (ex: Universities Repository)
   * Click on *Next*.
 
 3. On the next page:
-  * Type in the path of the ontology file *university-complete.ttl* using the separator '/' (ex: `C:/Users/Me/ontop-tutorial/endpoint/input/university-complete.ttl`).
-  * Type in the path of the obda file *university-complete.obda* using the separator '/' (ex: `C:/Users/Me/ontop-v3-tutorial/endpoint/input/university-complete.obda`).
+  * Type in the path of the ontology file *university-complete.ttl* using the separator '/' (ex: `C:/Users/Me/ontop-tutorial/endpoint/input/university-complete.ttl`)
+  * Type in the path of the obda file *university-complete.obda* using the separator '/' (ex: `C:/Users/Me/ontop-v3-tutorial/endpoint/input/university-complete.obda`)
   * Keep the default options.
   * Click on *Create*.
 
