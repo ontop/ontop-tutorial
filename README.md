@@ -5,8 +5,8 @@ Requirements
 ------------
 
 * [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [Latest version of Ontop](https://sourceforge.net/projects/ontop4obda/files/ontop-3.0.0-beta-2/)
-* [H2 with preloaded datasets](./h2.zip)
+* Latest version of Ontop from [GitHub](https://github.com/ontop/ontop/releases) or [SourceForge](https://sourceforge.net/projects/ontop4obda/files/)
+* H2 with preloaded datasets [h2.zip](./h2.zip)
 * [Git](https://git-scm.com/)
 
 Clone this repository
