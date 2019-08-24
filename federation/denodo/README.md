@@ -2,14 +2,14 @@
 # Ontop with Denodo
 
 NB: You might also consult the following presentation, which shows screenshots for
-some of the steps described below:
+some of the steps described below:\
 <https://github.com/ontop/ontop-examples/blob/master/cikm-2018-tutorial/4-obdi-demo.pdf>
 
 ### 1. Set up Denodo.
 
 #### Download Denodo Express 
 
-Download it from <https://www.denodo.com/en/denodo-platform/denodo-express>
+Download it from <https://www.denodo.com/en/denodo-platform/denodo-express> \
 (register, download the platform and the licence file)
 
 Unzip the file and run the installer.
@@ -113,7 +113,7 @@ Run the Ontop CLI:
 ontop endpoint -t bzweather.owl -m bzweather.obda -p bzweather.properties --cors-allowed-origins='*'
 ```
 
-#### Access SPARQL endpoint
+#### Access the SPARQL endpoint
 
 Open <http://localhost:8080/>
 
