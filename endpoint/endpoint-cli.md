@@ -1,7 +1,5 @@
 # Setting up an Ontop SPARQL endpoint with Ontop CLI
 
-NB: this tutorial needs Ontop v3-beta-3, which will be released soon.
-
 1. Download Ontop CLI and unzip it to a directory, which is denoted as `$ONTOP_CLI_DIR` below.
 2. Copy the H2 jdbc driver to `$ONTOP_CLI_DIR/jdbc`
     * Mac/Linux: `cp jdbc/h2-1.4.196.jar $ONTOP_CLI_IDR/jdbc`
