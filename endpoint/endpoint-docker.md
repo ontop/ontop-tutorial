@@ -19,7 +19,7 @@ The required files in this tutorial are in the working directory:
 
 In addition, we need the [h2 database](../h2.zip) as usual. Assume the h2 database is already running.
 
-**NB**: Linux users have to modify the property `jdbc.url` in [`intpu/university-complete.docker.properties`](input/university-complete.docker.properties). Replace `host.docker.internal` with the IP address of your machine.
+**NB**: Linux users have to modify the property `jdbc.url` in [`input/university-complete.docker.properties`](input/university-complete.docker.properties). Replace `host.docker.internal` with the IP address of your machine.
 
 
 ### Use `ontop/ontop-endpoint` directly
