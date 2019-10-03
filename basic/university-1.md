@@ -76,7 +76,7 @@ There is no primary key, but two foreign keys to the tables *uni1.course* and *u
 
 Procedure:
 
-1. Unzip the archive of H2 [*(h2.zip)*](https://github.com/ontop/ontop-tutorial/raw/master/h2.zip)
+1. Unzip the archive of H2 [*(h2.zip)*](../h2.zip)
 2. Start the database:
    * On Mac/Linux: open a terminal, go into *h2/bin* and run `sh h2.sh`
    * On Windows: click on the executable `h2w.bat`
