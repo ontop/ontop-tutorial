@@ -123,6 +123,7 @@ Mappings
 5. Double-clic on it to observe it and then close this pop-up window.
 
 #### Mapping uni1-student
+
  * Target:
 ```turtle
 ex:uni1/student/{s_id} a :Student ;
@@ -136,7 +137,8 @@ FROM "uni1"."student"
 ```
 
 Some remarks:
-  - We used the primary key `s_id` to create the URI. As we will see this afternoon,
+  - The target part is described using a [Turtle-like syntax](https://github.com/ontop/ontop/wiki/TurtleSyntax) while the source part is a regular SQL query.
+  - We used the primary key `s_id` to create the URI. As we will see later,
     this practice enables Ontop to remove self-joins, which is very important for optimizing
     the query performance.
   - This entry could be split into three mapping assertions.
