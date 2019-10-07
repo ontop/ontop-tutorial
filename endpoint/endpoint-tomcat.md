@@ -29,6 +29,7 @@ Procedure:
 3. On the next page:
   * Type in the path of the ontology file *university-complete.ttl* using the separator '/' (ex: `C:/Users/Me/ontop-tutorial/endpoint/input/university-complete.ttl`)
   * Type in the path of the obda file *university-complete.obda* using the separator '/' (ex: `C:/Users/Me/ontop-v3-tutorial/endpoint/input/university-complete.obda`)
+  * Type in the path of the properties file *university-complete.properties* using the separator '/' (ex: `C:/Users/Me/ontop-v3-tutorial/endpoint/input/university-complete.properties`)
   * Keep the default options.
   * Click on *Create*.
 
