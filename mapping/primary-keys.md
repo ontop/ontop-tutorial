@@ -5,7 +5,7 @@ Let us now consider the following files: [university-no-pk.ttl](university-no-pk
 The mapping assertions are the same as during the first session.
 The only difference is that primary keys have been removed.
 
-As mentioned in the talk, unique constraints (such as primary keys) are very useful for removing self-joins.
+Unique constraints (such as primary keys) are very useful for removing self-joins.
 
 Open the new ontology file in Protégé and run the following SPARQL query:
 
