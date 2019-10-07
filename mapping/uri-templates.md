@@ -53,11 +53,11 @@ FROM "uni1"."academic"
 #### Mapping uni1-teaching
  * Target:
 ```turtle
-ex:person/{ac.ssn} :teaches ex:uni1/course/{te.c_id} .
+ex:person/{ssn} :teaches ex:uni1/course/{c_id} .
 ```
  * Source:
 ```sql
-SELECT *
+SELECT ac."ssn", te."c_id"
 FROM "uni1"."teaching" te, "uni1"."academic" ac
 WHERE te."a_id" = ac."a_id"
 ```
@@ -68,11 +68,11 @@ As you can see, a join is needed to get the SSN of the teacher.
 #### Mapping uni1-registration
  * Target:
 ```turtle
-ex:person/{st.ssn} :attends ex:uni1/course/{re.c_id} .
+ex:person/{ssn} :attends ex:uni1/course/{c_id} .
 ```
  * Source:
 ```sql
-SELECT *
+SELECT st."ssn", re."c_id"
 FROM "uni1"."course-registration" re, "uni1"."student" st
 WHERE re."s_id" = st."s_id"
 ```
@@ -107,11 +107,11 @@ FROM "uni2"."person"
 #### Mapping uni2-lecturer
  * Target:
 ```turtle
-ex:person/{pe.ssn} :givesLecture ex:uni2/course/{co.cid} .
+ex:person/{ssn} :givesLecture ex:uni2/course/{cid} .
 ```
  * Source:
 ```sql
-SELECT *
+SELECT pe."ssn", co."cid" 
 FROM "uni2"."course" co, "uni2"."person" pe
 WHERE co."lecturer" = pe."pid"
 ```
