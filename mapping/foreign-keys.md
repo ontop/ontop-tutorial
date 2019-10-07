@@ -6,7 +6,7 @@ Please download the following files: [university-no-fk.ttl](university-no-fk.ttl
 
 Foreign keys play a crucial for optimizing the saturated mapping assertions by doing some query containment checks.
 
-Let us consider the case of `foaf:Person` as discussed during the talk.
+Let us consider the case of `foaf:Person`.
 If you run the following SPARQL query in the absence of foreign keys:
 
 ```sparql
