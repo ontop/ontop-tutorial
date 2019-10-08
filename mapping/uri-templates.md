@@ -119,11 +119,11 @@ WHERE co."lecturer" = pe."pid"
 #### Mapping uni2-lab-teacher
  * Target:
 ```turtle
-ex:person/{pe.ssn} :givesLab ex:uni2/course/{co.cid} .
+ex:person/{ssn} :givesLab ex:uni2/course/{cid} .
 ```
  * Source:
 ```sql
-SELECT *
+SELECT pe."ssn", co."cid"
 FROM "uni2"."course" co, "uni2"."person" pe
 WHERE co."lab_teacher" = pe."pid"
 ```
@@ -131,11 +131,11 @@ WHERE co."lab_teacher" = pe."pid"
 #### Mapping uni2-registration
  * Target:
 ```turtle
-ex:person/{pe.ssn} :attends ex:uni2/course/{re.cid} .
+ex:person/{ssn} :attends ex:uni2/course/{cid} .
 ```
  * Source:
 ```sql
-SELECT *
+SELECT pe."ssn", re."cid"
 FROM "uni2"."registration" re, "uni2"."person" pe
 WHERE re."pid" = pe."pid"
 ```
