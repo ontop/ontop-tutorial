@@ -168,7 +168,7 @@ WHERE {
       :teaches [ :isGivenAt ?ins1 ],
            [ :isGivenAt ?ins2 ] .
 
-   FILTER(?ins1 < ?ins2)
+  # FILTER(?ins1 < ?ins2)
 }
 ```
 
@@ -188,7 +188,7 @@ WHERE {
       foaf:lastName ?lastName ;
       :teaches [ :isGivenAt ?ins2 ] .
 
-   FILTER(?ins1 < ?ins2)
+  # FILTER(?ins1 < ?ins2)
 }
 ```
 Look at the SQL query, it should be very long.
