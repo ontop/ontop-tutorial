@@ -152,6 +152,7 @@ SELECT *
 FROM "uni2"."person"
 WHERE "status" = 1
 ```
+Then proceed in a similar way for the other positions (assistant professor, postdoc, etc.).
 
 ### SPARQL queries
 
@@ -168,7 +169,7 @@ WHERE {
       :teaches [ :isGivenAt ?ins1 ],
            [ :isGivenAt ?ins2 ] .
 
-  # FILTER(?ins1 < ?ins2)
+  FILTER(?ins1 < ?ins2)
 }
 ```
 
@@ -188,7 +189,7 @@ WHERE {
       foaf:lastName ?lastName ;
       :teaches [ :isGivenAt ?ins2 ] .
 
-  # FILTER(?ins1 < ?ins2)
+  FILTER(?ins1 < ?ins2)
 }
 ```
 Look at the SQL query, it should be very long.
