@@ -106,12 +106,12 @@ mappingId	uni1-academic-canonical
 target		:person/{ssn} obda:isCanonicalIRIOf :uni1/academic/{a_id} . 
 source		SELECT * FROM "uni1"."academic"
 
+mappingId	uni1-student-canonical
+target		:person/{ssn} obda:isCanonicalIRIOf :uni1/student/{s_id} . 
+source		SELECT * FROM "uni1"."student"
+
 mappingId	uni1-person-canonical
 target		:person/{ssn} obda:isCanonicalIRIOf :uni2/person/{pid} . 
 source		SELECT * FROM "uni2"."person"
-
-mappingId	uni2-person-canonical
-target		:person/{ssn} obda:isCanonicalIRIOf :uni1/student/{s_id} . 
-source		SELECT * FROM "uni1"."student"
 ]]
 
