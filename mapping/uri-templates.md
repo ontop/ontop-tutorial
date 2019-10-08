@@ -206,7 +206,7 @@ This takes the form of three additional mapping assertions that can be found in 
 #### Mapping uni1-academic-canonical
  * Target:
 ```turtle
-ex:person/{ssn} ontop:is_canonical_iri_of ex:uni1/academic/{a_id} .
+:person/{ssn} obda:isCanonicalIRIOf :uni1/academic/{a_id} . 
 ```
  * Source:
 ```sql
@@ -216,7 +216,7 @@ SELECT * FROM "uni1"."academic"
 #### Mapping uni1.student-canonical
  * Target:
 ```turtle
-ex:person/{ssn} ontop:is_canonical_iri_of ex:uni1/student/{s_id} .
+:person/{ssn} obda:isCanonicalIRIOf :uni1/student/{s_id} . 
 ```
  * Source:
 ```sql
@@ -226,7 +226,7 @@ SELECT * FROM "uni1"."student"
 #### Mapping uni2.person-canonical
  * Target:
 ```turtle
-ex:person/{ssn} ontop:is_canonical_iri_of ex:uni2/person/{pid} .
+:person/{ssn} obda:isCanonicalIRIOf :uni2/person/{pid} . 
 ```
  * Source:
 ```sql
