@@ -41,15 +41,15 @@ Data route 'HTTP Client' -> Configure button
 
 #### Connect datasources
 
-- Weather Stations: \
+(press Save icon for each source)
+
+- Weather Stations \
     name: stations \
     Web API: http://daten.buergernetz.bz.it/services/meteo/v1/stations
     
-- Sensor Data:  \
+- Sensor Data  \
     name: sensors \
     Web API: http://daten.buergernetz.bz.it/services/meteo/v1/sensors
-
-(press Save icon for each source)
 
 ### 3. Configure datasources
 
