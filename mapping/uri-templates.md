@@ -169,7 +169,7 @@ WHERE {
       :teaches [ :isGivenAt ?ins1 ],
            [ :isGivenAt ?ins2 ] .
 
-  FILTER(?ins1 < ?ins2)
+  FILTER(str(?ins1) < str(?ins2))
 }
 ```
 
@@ -189,11 +189,10 @@ WHERE {
       foaf:lastName ?lastName ;
       :teaches [ :isGivenAt ?ins2 ] .
 
-  FILTER(?ins1 < ?ins2)
+  FILTER(str(?ins1) < str(?ins2))
 }
 ```
-Look at the SQL query, it should be very long.
-It suffers from the exponential blowup that we mentioned during the talk.
+Look at the SQL query, it should be very long as it suffers from a substantial exponential blowup.
 Note that the first query also suffers from an exponential blowup but the latter is less important and thus less sensible on our small dataset.
 
 
