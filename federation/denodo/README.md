@@ -45,7 +45,7 @@ Data route 'HTTP Client' -> Configure button
 
 - Weather Stations \
     name: stations \
-    Web API: http://daten.buergernetz.bz.it/services/meteo/v1/stations
+    Web API: http://daten.buergernetz.bz.it/services/weather/station?categoryId=2&lang=de&format=json
     
 - Sensor Data  \
     name: sensors \
