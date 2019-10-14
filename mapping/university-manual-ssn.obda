@@ -34,11 +34,6 @@ target		ex:uni1/academic/{a_id} a :AssociateProfessor .
 source		SELECT * FROM "uni1"."academic"
 			WHERE "position" = 2
 			
-mappingId	uni1-AssistantProfessor
-target		ex:uni1/academic/{a_id} a :AssistantProfessor . 
-source		SELECT * FROM "uni1"."academic"
-			WHERE "position" = 3
-
 mappingId	uni1-PostDoc
 target		ex:uni1/academic/{a_id} a :PostDoc . 
 source		SELECT * FROM "uni1"."academic"
