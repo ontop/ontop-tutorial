@@ -107,7 +107,7 @@ WHERE {
       :teaches [ :isGivenAt ?ins1 ],
            [ :isGivenAt ?ins2 ] .
 
-   FILTER(?ins1 < ?ins2)
+   FILTER(str(?ins1) < str(?ins2))
 }
 
 [QueryItem="teaching_different_institutions-2"]
@@ -144,5 +144,5 @@ WHERE {
    ?p :teaches [ :isGivenAt ?ins1 ],
            [ :isGivenAt ?ins2 ] .
 
-   FILTER(?ins1 < ?ins2)
+   FILTER(str(?ins1) < str(?ins2))
 }
