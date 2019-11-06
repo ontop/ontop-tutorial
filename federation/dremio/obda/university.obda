@@ -22,15 +22,15 @@ mappingId	uni2-attends
 target		:uni2/student/{pid} :attends :uni2/course/{cid} . 
 source		SELECT pid, cid FROM "uni2-registration"
 
-mappingId	uni1-attends(0)
+mappingId	uni1-attends
 target		:uni1/student/{s_id} :attends :uni1/course/{c_id} . 
 source		SELECT "uni1-registration".s_id, "uni1-registration".c_id FROM "uni1-registration"
 
-mappingId	uni1-attends(1)
+mappingId	uni1-courses
 target		:uni1/course/{c_id} :title {title} . 
 source		SELECT "uni1-course".c_id, "uni1-course".title FROM  "uni1-course"
 
-mappingId	uni2-attends(0)
+mappingId	uni2-courses
 target		:uni2/course/{cid} :title {course} . 
 source		SELECT cid, course FROM  "uni2-course"
 ]]
