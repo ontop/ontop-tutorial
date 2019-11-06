@@ -24,6 +24,7 @@ It will be our data space in which we integrate data from various sources.
 The *uni1* data is contained in a PostgreSQL database named *university-session1*. Either you can download the SQL script that generates the database from [here](data/postgres-docker/db/university-session1.sql) and load it to your local PostgreSQL server, or you can run the docker container that we provide by executing the following script:
 
 ```bash
+cd data/postgres-docker #ontop-tutorial/federation/dremio/data/postgres-docker
 IMAGENAME="university-db"
 docker ps -q --filter ancestor=$IMAGENAME | xargs docker stop
 docker build -t $IMAGENAME .
