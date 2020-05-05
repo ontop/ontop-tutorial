@@ -45,7 +45,7 @@ First, a Web API with weather data.
 - In the field 'Name', enter `stations`
 - In the field 'Data route', select 'HTTP Client'
 - Click on the 'Configure' button to enter the URL of the source:  
-<http://daten.buergernetz.bz.it/services/weather/station>  
+<http://daten.buergernetz.bz.it/services/meteo/v1/stations>
 - Click on 'OK', and then press the 'Save' button to save the data source
 
 Then add a second data source for sensor data, repeating all the operations above, but:  
