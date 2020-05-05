@@ -32,7 +32,7 @@ Note: environment variable `JAVA_HOME` must be set
 	
 ### 2. Configure datasets with Denodo
 
-NB: instead of doing the following step by step, you can also load he script [this SQL script](bzopendata.sql) directly within Denodo.
+NB: instead of doing the following step by step, you can also load [this SQL script](bzopendata.sql) directly within Denodo.
 
 #### Create a database
 
@@ -45,7 +45,7 @@ First, a Web API with weather data.
 - In the field 'Name', enter `stations`
 - In the field 'Data route', select 'HTTP Client'
 - Click on the 'Configure' button to enter the URL of the source:  
-<http://daten.buergernetz.bz.it/services/weather/stations>  
+<http://daten.buergernetz.bz.it/services/weather/station>  
 - Click on 'OK', and then press the 'Save' button to save the data source
 
 Then add a second data source for sensor data, repeating all the operations above, but:  
