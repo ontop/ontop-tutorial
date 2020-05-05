@@ -67,7 +67,7 @@ For stations, click on the 'Execution panel' button, and then the button 'Execut
 We get only one result --> We need to flatten the data:
 - In the left window, right-click on {}stations -> New -> flatten
  (to display the data sources, you may need to right-click on 'bzopendata' -> 'Refresh')
-- Right click on the first row of the table -> 'Flatten array row'
+- Right click on the row 'features' ine the table -> 'Flatten array "features"'
 - Click on 'Save': this creates a new view 'f_stations'
 
 Optionally, one may want to select only certain columns in this view:
