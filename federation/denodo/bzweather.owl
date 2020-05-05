@@ -10,12 +10,14 @@
 @base <http://example.org/weather> .
 
 <http://example.org/weather> rdf:type owl:Ontology ;
-                              owl:imports <http://www.opengis.net/ont/geosparql> ,
-                                          sosa: .
-
+#                              owl:imports <http://www.opengis.net/ont/geosparql> ,
+owl:imports sosa: .
+                                          
 #################################################################
 #    Object Properties
 #################################################################
+
+geo:asWKT rdf:type owl:DatatypeProperty .
 
 ###  http://example.org/weather#hasMeasurement
 :hasMeasurement rdf:type owl:ObjectProperty .
