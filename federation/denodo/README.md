@@ -2,14 +2,14 @@
 # Ontop with Denodo
 
 NB: You might also consult the following presentation, which shows screenshots for
-some of the steps described below:\
+some of the steps described below:  
 <https://github.com/ontop/ontop-examples/blob/master/cikm-2018-tutorial/4-obdi-demo.pdf>
 
 ### 1. Set up Denodo.
 
 #### Download Denodo Express 
 
-Download it from <https://www.denodo.com/en/denodo-platform/denodo-express> \
+Download it from <https://www.denodo.com/en/denodo-platform/denodo-express>  
 (register, download the platform and the licence file)
 
 Unzip the file and run the installer.
@@ -19,85 +19,83 @@ Note: environment variable `JAVA_HOME` must be set
 #### Running Denodo
 
 ```console
-/Applications/DenodoPlatform7.0/bin/DenodoPlatform.sh
+<DenodoInstallationPath>/bin/denodoPlatform.sh
 ```
 
-- Select 'Virtual DataPort' tab
+- Select the 'Virtual DataPort' tab
 - Start 'Virtual DataPort Server'
-- Press 'LAUNCH' button
-- Login with 'admin' 'admin'
+- Press the 'Launch' button
+- Login with:  
+    . Login: `admin`  
+	. Password: `admin`  
+	. Server: `//localhost:9999/admin`
+	
+### 2. Configure datasets with Denodo
 
-### 2. Configure datasets in Dremio
+NB: instead of doing the following step by step, you can also load he script [this SQL script](bzopendata.sql) directly within Denodo.
 
-NB: instead of doing the following step by step, you can also load `bzopendata.sql` directly to Denodo
+#### Create a database
 
-#### Create database
+We will create two data sources based on web APIs.  
+First, a Web API with weather data.
 
--> Administration -> Database Management -> New
-Call the database e.g. bzopendata (leave the rest to the defaults)
+- Administration -> Database Management -> New  
+- Name the database `bzopendata` for instance (leave the rest to default values), and click on the 'OK' button
+- In the left window, right-clik on the bzopendata database -> New -> Data Source -> JSON
+- In the field 'Name', enter `stations`
+- In the field 'Data route', select 'HTTP Client'
+- Click on the 'Configure' button to enter the URL of the source:  
+<http://daten.buergernetz.bz.it/services/weather/stations>  
+- Click on 'OK', and then press the 'Save' button to save the data source
 
-Right-clik bzopendata database -> New -> Data Source -> JSON
-Data route 'HTTP Client' -> Configure button
+Then add a second data source for sensor data, repeating all the operations above, but:  
+- in the field 'Name', enter `sensors`,
+- use the URL:
+<http://daten.buergernetz.bz.it/services/meteo/v1/sensors>
 
-#### Connect datasources
+### 3. Configure the datasources
 
-(press Save icon for each source)
 
-- Weather Stations \
-    name: stations \
-    Web API: http://daten.buergernetz.bz.it/services/weather/station?categoryId=2&lang=de&format=json
-    
-- Sensor Data  \
-    name: sensors \
-    Web API: http://daten.buergernetz.bz.it/services/meteo/v1/sensors
+Select a data source, and click on 'Create base view'
+- for stations: use the default "tuple root" (`/JSONFile`)
+- for sensors: use the "tuple root": `/JSONFile/JSONArray` (uncheck the checkbox 'JSON root')
 
-### 3. Configure datasources
+Click on 'Save'.
 
-Open the datasources in a web browser to understand their structure.
-
-For each datasource: Create base view
-- for stations: use default Tuple root
-- for sensors: use Tuple root: `/JSONFile/JSONArray` (click on checkbox JSON root)
-
-For stations, try to run 'Execution panel' button, then Execute
+For stations, click on the 'Execution panel' button, and then the button 'Execute'
 
 We get only one result --> We need to flatten the data:
-- Right click {}stations -> New -> flatten
-- Enlarge window with data
-- Right click features -> Flatten array 'features'
-- Save the result, which creates a new view f_stations
+- In the left window, right-click on {}stations -> New -> flatten
+ (to display the data sources, you may need to right-click on 'bzopendata' -> 'Refresh')
+- Right click on the first row of the table -> 'Flatten array row'
+- Click on 'Save': this creates a new view 'f_stations'
 
-Selection:
-- Right click f_stations -> New -> Selection  
-- Select Output tab and specify what to keep in the output
-- Unfold properties and right-click each subfield and select 'Project field ...'
+Optionally, one may want to select only certain columns in this view:
+- In the left window, right-click on 'f_stations' -> New -> Selection  
+- Select the 'Output' tab and choose which fields to keep in the output
+- Click on 'Save': this will create a new view 'p_f_stations'
 
 ### 4. Configure Ontop-protege to use a Denodo datasource
 
-Install the Denodo JDBC driver:
-- Protege -> Preferences -> JDBC Drivers tab -> Add
-- Description: Denodo
-- Class name: `com.denodo.vdp.jdbc.Driver`
-- Driver File (jar): browse to `/.../DenodoPlatform7.0/tools/client-drivers/jdbc/denodo-vdp-jdbcdriver.jar`
+- Install the Denodo JDBC driver:
+ Within Protege: File -> Preferences -> 'JDBC Drivers' tab -> Add  
+    . Description: `Denodo`  
+    . Class name: `com.denodo.vdp.jdbc.Driver`  
+    . Driver File (jar): browse to `<DenodoInstallationPath>/tools/client-drivers/jdbc/denodo-vdp-jdbcdriver.jar`  
 
-For the connection in your Datasource manager use:
-
-- Connection url: `jdbc:vdb://localhost:9999/bzopendata`
-- Database Username: `admin`
-- Database Password: `admin`
-- Driver class: `com.denodo.vdp.jdbc.Driver`
+- For the connection, in your Datasource manager, use:  
+    . Connection url: `jdbc:vdb://localhost:9999/bzopendata`  
+    . Database Username: `admin`  
+    . Database Password: `admin`  
+    . Driver class: `com.denodo.vdp.jdbc.Driver`
 
 ### 5. Create the ontology and mapping and and try some SPARQL queries
 
-You can use directly the files we have prepared
-
-```
-.
-├── bzweather.obda
-├── bzweather.owl
-├── bzweather.properties
-└── bzweather.q
-```
+You can use directly the files we have prepared:
+- [bzweather.obda](bzweather.obda)
+- [bzweather.owl](bzweather.owl)
+- [bzweather.properties](bzweather.properties)
+- [bzweather.q](bzweather.q)
 
 ### 6. Setup a SPARQL endpoint with Command Line Interface
 
@@ -106,8 +104,8 @@ You can use directly the files we have prepared
 Add the JDBC denodo driver for the Ontop CLI:
 
 ```console
-cp /.../DenodoPlatform7.0/tools/client-drivers/jdbc/denodo-vdp-jdbcdriver.jar
-/.../ontop-3.0.0-beta-3/jdbc
+cp <DenodoInstallationPath>/tools/client-drivers/jdbc/denodo-vdp-jdbcdriver.jar
+<OntopInstallationPath>/jdbc
 ```
 
 Run the Ontop CLI:
@@ -134,7 +132,3 @@ SELECT *
 }
 LIMIT 100
 ```
-
-<!-- 5.3 Visualize the results using a simple webpage using YASGUI (which is part of
-    the endpoint) -->
-
