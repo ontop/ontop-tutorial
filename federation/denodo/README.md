@@ -65,11 +65,12 @@ Click on 'Save'.
 For stations, click on the 'Execution panel' button, and then the button 'Execute'
 
 We get only one result --> We need to flatten the data:
-- In the left window, right-click on {}stations -> New -> flatten
+- In the left window, right-click on {}stations -> New -> Flatten
  (to display the data sources, you may need to right-click on 'bzopendata' -> 'Refresh')
-- Right click on the row 'features' ine the table -> 'Flatten array "features"'
+- Right click on the row 'features' in the table -> 'Flatten array features'  
 In addition, we want to project the subfields of the JSON object 'properties':
-- Select the 'Output' tab, and right-click on 'properties' -> 'Project subfields of properties'
+- Select the 'Output' tab
+- Right-click on the row 'properties' in the table -> 'Project subfields of properties'
 
 Click on 'Save': this creates a new view 'f_stations'
 
