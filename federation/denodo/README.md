@@ -68,12 +68,10 @@ We get only one result --> We need to flatten the data:
 - In the left window, right-click on {}stations -> New -> flatten
  (to display the data sources, you may need to right-click on 'bzopendata' -> 'Refresh')
 - Right click on the row 'features' ine the table -> 'Flatten array "features"'
-- Click on 'Save': this creates a new view 'f_stations'
+In addition, we want to project the subfields of the JSON object 'properties':
+- Select the 'Output' tab, and right-click on 'properties' -> 'Project subfields of properties'
 
-Optionally, one may want to select only certain columns in this view:
-- In the left window, right-click on 'f_stations' -> New -> Selection  
-- Select the 'Output' tab and choose which fields to keep in the output
-- Click on 'Save': this will create a new view 'p_f_stations'
+Click on 'Save': this creates a new view 'f_stations'
 
 ### 4. Configure Ontop-protege to use a Denodo datasource
 
