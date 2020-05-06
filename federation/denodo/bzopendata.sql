@@ -1,4 +1,4 @@
-﻿# Generated with Denodo Platform 7.0.
+﻿# Generated with Denodo Platform 7.0 update 20190903.
 
 ENTER SINGLE USER MODE;
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -49,20 +49,16 @@ DROP WRAPPER JSON IF EXISTS sensors CASCADE;
 
 CREATE WRAPPER JSON sensors
     DATASOURCENAME=sensors
-    TUPLEROOT '/JSONFile'
+    TUPLEROOT '/JSONFile/JSONArray'
     OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
-        jsonarray = 'JSONArray' : ARRAY OF (
-            jsonarray = 'JSONArray' : REGISTER OF (
-                scode = 'SCODE' : 'java.lang.String',
-                type = 'TYPE' : 'java.lang.String',
-                desc_d = 'DESC_D' : 'java.lang.String',
-                desc_i = 'DESC_I' : 'java.lang.String',
-                desc_l = 'DESC_L' : 'java.lang.String',
-                unit = 'UNIT' : 'java.lang.String',
-                date = 'DATE' : 'java.lang.String',
-                value = 'VALUE' : 'java.lang.Double'
-            )
-        )
+        scode = 'JSONFile.JSONArray.SCODE' : 'java.lang.String',
+        type = 'JSONFile.JSONArray.TYPE' : 'java.lang.String',
+        desc_d = 'JSONFile.JSONArray.DESC_D' : 'java.lang.String',
+        desc_i = 'JSONFile.JSONArray.DESC_I' : 'java.lang.String',
+        desc_l = 'JSONFile.JSONArray.DESC_L' : 'java.lang.String',
+        unit = 'JSONFile.JSONArray.UNIT' : 'java.lang.String',
+        date = 'JSONFile.JSONArray.DATE' : 'java.lang.String',
+        value = 'JSONFile.JSONArray.VALUE' : 'java.lang.Double'
     )
     );
 
@@ -70,34 +66,38 @@ DROP WRAPPER JSON IF EXISTS stations CASCADE;
 
 CREATE WRAPPER JSON stations
     DATASOURCENAME=stations
-    TUPLEROOT '/JSONFile/features'
+    TUPLEROOT '/JSONFile'
     OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        type = 'type' : 'java.lang.String',
         name = 'name' : 'java.lang.String',
-        type_0 = 'type' : 'java.lang.String',
         crs = 'crs' : REGISTER OF (
             type = 'type' : 'java.lang.String',
             properties = 'properties' : REGISTER OF (
                 name = 'name' : 'java.lang.String'
             )
         ),
-        type = 'JSONFile.features.type' : 'java.lang.String',
-        geometry = 'JSONFile.features.geometry' : REGISTER OF (
-            type = 'type' : 'java.lang.String',
-            coordinates = 'coordinates' : ARRAY OF (
-                coordinates = 'coordinates' : REGISTER OF (
-                    field_0 = 'field_0' : 'java.lang.Double'
+        features = 'features' : ARRAY OF (
+            features = 'features' : REGISTER OF (
+                type = 'type' : 'java.lang.String',
+                geometry = 'geometry' : REGISTER OF (
+                    type = 'type' : 'java.lang.String',
+                    coordinates = 'coordinates' : ARRAY OF (
+                        coordinates = 'coordinates' : REGISTER OF (
+                            field_0 = 'field_0' : 'java.lang.Double'
+                        )
+                    )
+                ),
+                properties = 'properties' : REGISTER OF (
+                    scode = 'SCODE' : 'java.lang.String',
+                    name_d = 'NAME_D' : 'java.lang.String',
+                    name_i = 'NAME_I' : 'java.lang.String',
+                    name_l = 'NAME_L' : 'java.lang.String',
+                    name_e = 'NAME_E' : 'java.lang.String',
+                    alt = 'ALT' : 'java.lang.Double',
+                    long = 'LONG' : 'java.lang.Double',
+                    lat = 'LAT' : 'java.lang.Double'
                 )
             )
-        ),
-        properties = 'JSONFile.features.properties' : REGISTER OF (
-            scode = 'SCODE' : 'java.lang.String',
-            name_d = 'NAME_D' : 'java.lang.String',
-            name_i = 'NAME_I' : 'java.lang.String',
-            name_l = 'NAME_L' : 'java.lang.String',
-            name_e = 'NAME_E' : 'java.lang.String',
-            alt = 'ALT' : 'java.lang.Double',
-            long = 'LONG' : 'java.lang.Double',
-            lat = 'LAT' : 'java.lang.Double'
         )
     )
     );
@@ -109,37 +109,37 @@ CREATE WRAPPER JSON stations
 # #######################################
 # TYPES
 # #######################################
-DROP TYPE IF EXISTS sensors_jsonarray_jsonarray CASCADE;
-
-CREATE TYPE sensors_jsonarray_jsonarray AS REGISTER OF (scode:text, type:text, desc_d:text, desc_i:text, desc_l:text, unit:text, date:text, value:double);
-
 DROP TYPE IF EXISTS stations_crs_properties CASCADE;
 
 CREATE TYPE stations_crs_properties AS REGISTER OF (name:text);
 
-DROP TYPE IF EXISTS stations_geometry_coordinates_coordinates CASCADE;
+DROP TYPE IF EXISTS stations_features_features_geometry_coordinates_coordinates CASCADE;
 
-CREATE TYPE stations_geometry_coordinates_coordinates AS REGISTER OF (field_0:double);
+CREATE TYPE stations_features_features_geometry_coordinates_coordinates AS REGISTER OF (field_0:double);
 
-DROP TYPE IF EXISTS stations_properties CASCADE;
+DROP TYPE IF EXISTS stations_features_features_properties CASCADE;
 
-CREATE TYPE stations_properties AS REGISTER OF (scode:text, name_d:text, name_i:text, name_l:text, name_e:text, alt:double, long:double, lat:double);
-
-DROP TYPE IF EXISTS sensors_jsonarray CASCADE;
-
-CREATE TYPE sensors_jsonarray AS ARRAY OF sensors_jsonarray_jsonarray;
+CREATE TYPE stations_features_features_properties AS REGISTER OF (scode:text, name_d:text, name_i:text, name_l:text, name_e:text, alt:double, long:double, lat:double);
 
 DROP TYPE IF EXISTS stations_crs CASCADE;
 
 CREATE TYPE stations_crs AS REGISTER OF (type:text, properties:stations_crs_properties);
 
-DROP TYPE IF EXISTS stations_geometry_coordinates CASCADE;
+DROP TYPE IF EXISTS stations_features_features_geometry_coordinates CASCADE;
 
-CREATE TYPE stations_geometry_coordinates AS ARRAY OF stations_geometry_coordinates_coordinates;
+CREATE TYPE stations_features_features_geometry_coordinates AS ARRAY OF stations_features_features_geometry_coordinates_coordinates;
 
-DROP TYPE IF EXISTS stations_geometry CASCADE;
+DROP TYPE IF EXISTS stations_features_features_geometry CASCADE;
 
-CREATE TYPE stations_geometry AS REGISTER OF (type:text, coordinates:stations_geometry_coordinates);
+CREATE TYPE stations_features_features_geometry AS REGISTER OF (type:text, coordinates:stations_features_features_geometry_coordinates);
+
+DROP TYPE IF EXISTS stations_features_features CASCADE;
+
+CREATE TYPE stations_features_features AS REGISTER OF (type:text, geometry:stations_features_features_geometry, properties:stations_features_features_properties);
+
+DROP TYPE IF EXISTS stations_features CASCADE;
+
+CREATE TYPE stations_features AS ARRAY OF stations_features_features;
 
 # #######################################
 # MAPS
@@ -151,25 +151,30 @@ CREATE TYPE stations_geometry AS REGISTER OF (type:text, coordinates:stations_ge
 DROP VIEW IF EXISTS sensors CASCADE;
 
 CREATE TABLE sensors I18N us_pst (
-        jsonarray:sensors_jsonarray
+        scode:text, 
+        type:text, 
+        desc_d:text, 
+        desc_i:text, 
+        desc_l:text, 
+        unit:text, 
+        date:text, 
+        value:double
     )
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD sensors(
         I18N us_pst
         CONSTRAINTS (
-             ADD jsonarray NOS ZERO ()
-             ADD jsonarray NOS ZERO ()
-             ADD jsonarray.scode NOS ZERO ()
-             ADD jsonarray.type NOS ZERO ()
-             ADD jsonarray.desc_d NOS ZERO ()
-             ADD jsonarray.desc_i NOS ZERO ()
-             ADD jsonarray.desc_l NOS ZERO ()
-             ADD jsonarray.unit NOS ZERO ()
-             ADD jsonarray.date NOS ZERO ()
-             ADD jsonarray.value NOS ZERO ()
+             ADD scode NOS ZERO ()
+             ADD type NOS ZERO ()
+             ADD desc_d NOS ZERO ()
+             ADD desc_i NOS ZERO ()
+             ADD desc_l NOS ZERO ()
+             ADD unit NOS ZERO ()
+             ADD date NOS ZERO ()
+             ADD value NOS ZERO ()
         )
-        OUTPUTLIST (jsonarray
+        OUTPUTLIST (date, desc_d, desc_i, desc_l, scode, type, unit, value
         )
         WRAPPER (json sensors)
     );
@@ -177,41 +182,41 @@ CREATE TABLE sensors I18N us_pst (
 DROP VIEW IF EXISTS stations CASCADE;
 
 CREATE TABLE stations I18N us_pst (
-        name:text, 
-        type_0:text, 
-        crs:stations_crs, 
         type:text, 
-        geometry:stations_geometry, 
-        properties:stations_properties
+        name:text, 
+        crs:stations_crs, 
+        features:stations_features
     )
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD stations(
         I18N us_pst
         CONSTRAINTS (
+             ADD type NOS ZERO ()
              ADD name NOS ZERO ()
-             ADD type_0 NOS ZERO ()
              ADD crs NOS ZERO ()
              ADD crs.type NOS ZERO ()
              ADD crs.properties NOS ZERO ()
              ADD crs.properties.name NOS ZERO ()
-             ADD type NOS ZERO ()
-             ADD geometry NOS ZERO ()
-             ADD geometry.type NOS ZERO ()
-             ADD geometry.coordinates NOS ZERO ()
-             ADD geometry.coordinates NOS ZERO ()
-             ADD geometry.coordinates.field_0 NOS ZERO ()
-             ADD properties NOS ZERO ()
-             ADD properties.scode NOS ZERO ()
-             ADD properties.name_d NOS ZERO ()
-             ADD properties.name_i NOS ZERO ()
-             ADD properties.name_l NOS ZERO ()
-             ADD properties.name_e NOS ZERO ()
-             ADD properties.alt NOS ZERO ()
-             ADD properties.long NOS ZERO ()
-             ADD properties.lat NOS ZERO ()
+             ADD features NOS ZERO ()
+             ADD features NOS ZERO ()
+             ADD features.type NOS ZERO ()
+             ADD features.geometry NOS ZERO ()
+             ADD features.geometry.type NOS ZERO ()
+             ADD features.geometry.coordinates NOS ZERO ()
+             ADD features.geometry.coordinates NOS ZERO ()
+             ADD features.geometry.coordinates.field_0 NOS ZERO ()
+             ADD features.properties NOS ZERO ()
+             ADD features.properties.scode NOS ZERO ()
+             ADD features.properties.name_d NOS ZERO ()
+             ADD features.properties.name_i NOS ZERO ()
+             ADD features.properties.name_l NOS ZERO ()
+             ADD features.properties.name_e NOS ZERO ()
+             ADD features.properties.alt NOS ZERO ()
+             ADD features.properties.long NOS ZERO ()
+             ADD features.properties.lat NOS ZERO ()
         )
-        OUTPUTLIST (crs, geometry, name, properties, type, type_0
+        OUTPUTLIST (crs, features, name, type
         )
         WRAPPER (json stations)
     );
@@ -219,21 +224,12 @@ CREATE TABLE stations I18N us_pst (
 # #######################################
 # VIEWS
 # #######################################
-DROP VIEW IF EXISTS f_sensors CASCADE;
-
-CREATE VIEW f_sensors
-    PRIMARY KEY ( 'scode' , 'type' , 'date' ) AS SELECT scode AS scode, type AS type, desc_d AS desc_d, desc_i AS desc_i, desc_l AS desc_l, unit AS unit, date AS date, value AS value FROM FLATTEN sensors AS v ( v.jsonarray);
-
-ALTER VIEW f_sensors
- LAYOUT (sensors = [20, 20, 227, 206]);
-
 DROP VIEW IF EXISTS f_stations CASCADE;
 
-CREATE VIEW f_stations
-    PRIMARY KEY ( 'scode' ) AS SELECT stations.name AS name, stations.type_0 AS type_0, stations.crs AS crs, stations.type AS type, stations.geometry AS geometry, stations.properties AS properties, (stations.properties).scode AS scode, (stations.properties).name_d AS name_d, (stations.properties).name_i AS name_i, (stations.properties).name_l AS name_l, (stations.properties).name_e AS name_e, (stations.properties).long AS long, (stations.properties).lat AS lat, (stations.geometry).coordinates AS coordinates FROM stations;
+CREATE VIEW f_stations AS SELECT type, name, crs, features_type, geometry, properties, (properties).scode AS scode, (properties).name_d AS name_d, (properties).name_i AS name_i, (properties).name_l AS name_l, (properties).name_e AS name_e, (properties).alt AS alt, (properties).long AS long, (properties).lat AS lat FROM FLATTEN stations AS v ( v.features);
 
 ALTER VIEW f_stations
- LAYOUT (stations = [20, 20, 270, 186]);
+ LAYOUT (stations = [20, 20, 487, 446]);
 
 # #######################################
 # ASSOCIATIONS
