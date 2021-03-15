@@ -1,0 +1,333 @@
+@prefix : <http://example.org/voc#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:uni1-student_1-e7e03ab0-37a4-4fe9-88a2-3cd1995ba3a3> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni1\".\"student\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "first_name";
+          rr:datatype xsd:string;
+          rr:termType rr:Literal
+        ];
+      rr:predicate foaf:firstName
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "last_name";
+          rr:datatype xsd:string;
+          rr:termType rr:Literal
+        ];
+      rr:predicate foaf:lastName
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Student;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/student/{s_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-academic_1-9013fb10-eb05-4387-8cb3-82d91ffa3adb> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni1\".\"academic\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "first_name";
+          rr:datatype xsd:string;
+          rr:termType rr:Literal
+        ];
+      rr:predicate foaf:firstName
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "last_name";
+          rr:datatype xsd:string;
+          rr:termType rr:Literal
+        ];
+      rr:predicate foaf:lastName
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :FacultyMember;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/academic/{a_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-fullProfessor-847e5358-cb4f-4183-b083-f4b927caff85> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni1\".\"academic\"
+WHERE \"position\" = 1"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :FullProfessor;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/academic/{a_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-AssociateProfessor-6dae092c-3755-442b-97a2-57eddb89cc2f> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni1\".\"academic\"
+WHERE \"position\" = 2"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :AssociateProfessor;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/academic/{a_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-PostDoc-a090388b-8e80-4e6c-ae74-6c45c90a595e> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni1\".\"academic\"
+WHERE \"position\" = 9"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :PostDoc;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/academic/{a_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-externalTeacher-b58ecc4e-56bb-41ce-8890-ecc38058b5fa> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni1\".\"academic\"
+WHERE \"position\" = 8"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :ExternalTeacher;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/academic/{a_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-teaching-7c3bcf40-6f5f-4fd3-9ce5-37dfe7c35402> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni1\".\"teaching\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://example.org/voc#uni1/course/{c_id}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :teaches
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/academic/{a_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-course_1-bb94f67c-f1f7-47a5-a6f0-f386b3d4fa0d> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni1\".\"course\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "title";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :title
+    ], [ a rr:PredicateObjectMap;
+      rr:object <http://example.org/voc#uni1/university>;
+      rr:predicate :isGivenAt
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Course;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/course/{c_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni1-registration-89974c2a-e6f6-4ee2-9723-473b1783cae8> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT *
+FROM \"uni1\".\"course-registration\""""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://example.org/voc#uni1/course/{c_id}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :attends
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:graph :uni1;
+      rr:template "http://example.org/voc#uni1/student/{s_id}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-person_1-9da4aa66-a684-4bcd-85cd-830d53ce1d2f> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni2\".\"person\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "fname";
+          rr:datatype xsd:string;
+          rr:termType rr:Literal
+        ];
+      rr:predicate foaf:firstName
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "lname";
+          rr:datatype xsd:string;
+          rr:termType rr:Literal
+        ];
+      rr:predicate foaf:lastName
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class foaf:Person;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-undergraduate-c5cfc785-e277-4edc-851e-4dce620eeb0a> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni2\".\"person\"
+WHERE \"status\" = 1"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :UndergraduateStudent;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-graduate-79c2d15c-7f8b-4541-8003-8e440a794add> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni2\".\"person\"
+WHERE \"status\" = 2"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :GraduateStudent;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-fullProfessor-cf06c3be-63b4-41af-94c3-16068c02a4e6> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni2\".\"person\"
+WHERE \"status\" = 7"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :FullProfessor;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-associate-prof-e2dce794-3552-48e6-8495-e14bb382663d> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni2\".\"person\"
+WHERE \"status\" = 8"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :AssociateProfessor;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-course_1-1d847052-574d-4533-b4ea-e99905f378d2> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni2\".\"course\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "topic";
+          rr:datatype xsd:string;
+          rr:termType rr:Literal
+        ];
+      rr:predicate :title
+    ], [ a rr:PredicateObjectMap;
+      rr:object <http://example.org/voc#uni2/university>;
+      rr:predicate :isGivenAt
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Course;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/course/{cid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-lecturer-f6a18b18-b313-489f-94fc-f6c39a682213> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni2\".\"course\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://example.org/voc#uni2/course/{cid}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :givesLecture
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{lecturer}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-assistantProfessor-d91004b1-e345-4bc0-8c8f-ef041cab2222> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni2\".\"person\"
+WHERE \"status\" = 9"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :AssistantProfessor;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-postDoc-5dbfb2ab-eb1d-46f2-bcb0-d44fe2118780> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT * FROM \"uni2\".\"person\"
+WHERE \"status\" = 3"""
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :PostDoc;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-lab-teacher-ad966103-f9c2-4967-81a2-d331082cbf4d> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * FROM \"uni2\".\"course\""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://example.org/voc#uni2/course/{cid}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :givesLab
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{lab_teacher}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:uni2-registration-fe2566b4-eb36-428a-92f6-443bc2e188bc> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT *
+FROM \"uni2\".\"registration\""""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://example.org/voc#uni2/course/{cid}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :attends
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:graph :uni2;
+      rr:template "http://example.org/voc#uni2/person/{pid}";
+      rr:termType rr:IRI
+    ] .
