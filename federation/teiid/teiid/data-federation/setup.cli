@@ -1,0 +1,11 @@
+connect
+
+deploy /opt/jboss/jdbc/mysql-connector-java-8.0.21.jar   
+/subsystem=datasources/data-source=mysql-ds:add(jndi-name=java:/mysql-uni1,  enabled=true, use-java-context=true, driver-name=mysql-connector-java-8.0.21.jar, connection-url="jdbc:mysql://mysql:3306/uni1",user-name=uni1, password=uni1pwd)
+/subsystem=datasources/data-source=mysql-ds:enable
+
+deploy /opt/jboss/jdbc/postgresql-42.2.14.jre7.jar
+/subsystem=datasources/data-source=pgsql-ds:add(jndi-name=java:/pgsql-uni2,  enabled=true, use-java-context=true, driver-name=postgresql-42.2.14.jre7.jar, connection-url="jdbc:postgresql://pgsql:5432/uni2",user-name=uni2, password=uni2pwd)
+/subsystem=datasources/data-source=pgsql-ds:enable
+
+deploy /opt/jboss/data-federation/universities-vdb.xml

@@ -1,0 +1,42 @@
+title="University Demo"
+
+[[tabGroups]]
+
+name="Example Queries"
+
+[[tabGroups.tabs]]
+
+name="student_course"
+query="""
+PREFIX : <http://example.org/voc#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?lname ?title
+WHERE {
+  ?attendee foaf:lastName ?lname ;
+      :attends ?course .
+  ?course :title ?title .
+}
+"""
+
+[[tabGroups.tabs]]
+
+name="prof_course"
+query="""
+PREFIX : <http://example.org/voc#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?title ?fName ?lName {
+  ?teacher rdf:type :Professor .
+  ?teacher :teaches ?course .
+  ?teacher foaf:lastName ?lName .
+
+  ?course :title ?title .
+  OPTIONAL {
+    ?teacher foaf:firstName ?fName .
+  }
+}
+"""
+
+

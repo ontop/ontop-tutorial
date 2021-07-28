@@ -1,0 +1,64 @@
+[PrefixDeclaration]
+:		http://example.org/voc#
+ex:		http://example.org/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+foaf:		http://xmlns.com/foaf/0.1/
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+mappingId	uni2-person
+target		:uni2/person/{pid} a foaf:Person ; foaf:firstName {fname}^^xsd:string ; foaf:lastName {lname}^^xsd:string .
+source		SELECT * FROM person
+
+mappingId	uni2-undergraduate
+target		:uni2/person/{pid} a :UndergraduateStudent .
+source		SELECT * FROM person
+			WHERE status = 1
+
+mappingId	uni2-graduate
+target		:uni2/person/{pid} a :GraduateStudent .
+source		SELECT * FROM person
+			WHERE status = 2
+
+mappingId	uni2-fullProfessor
+target		:uni2/person/{pid} a :FullProfessor .
+source		SELECT * FROM person
+			WHERE status = 7
+
+mappingId	uni2-associate-prof
+target		:uni2/person/{pid} a :AssociateProfessor .
+source		SELECT * FROM person
+			WHERE status = 8
+
+mappingId	uni2-course
+target		:uni2/course/{cid} a :Course ; :title {topic}^^xsd:string ; :isGivenAt :uni2/university .
+source		SELECT * FROM course
+
+mappingId	uni2-lecturer
+target		:uni2/person/{lecturer} :givesLecture :uni2/course/{cid} .
+source		SELECT * FROM course
+
+mappingId	uni2-assistantProfessor
+target		:uni2/person/{pid} a :AssistantProfessor .
+source		SELECT * FROM person
+			WHERE status = 9
+
+mappingId	uni2-postDoc
+target		:uni2/person/{pid} a :PostDoc .
+source		SELECT * FROM person
+			WHERE status = 3
+
+mappingId	uni2-lab-teacher
+target		:uni2/person/{lab_teacher} :givesLab :uni2/course/{cid} .
+source		SELECT * FROM course
+
+mappingId	uni2-registration
+target		:uni2/person/{pid} :attends :uni2/course/{cid} .
+source		SELECT *
+			FROM registration
+]]
+

@@ -1,0 +1,55 @@
+[PrefixDeclaration]
+:		http://example.org/voc#
+ex:		http://example.org/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+foaf:		http://xmlns.com/foaf/0.1/
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+mappingId	uni1-student
+target		:uni1/student/{s_id} a :Student ; foaf:firstName {first_name}^^xsd:string ; foaf:lastName {last_name}^^xsd:string .
+source		SELECT * FROM student
+
+mappingId	uni1-academic
+target		:uni1/academic/{a_id} a :FacultyMember ; foaf:firstName {first_name}^^xsd:string ; foaf:lastName {last_name}^^xsd:string .
+source		SELECT * FROM academic
+
+mappingId	uni1-fullProfessor
+target		:uni1/academic/{a_id} a :FullProfessor .
+source		SELECT * FROM academic
+			WHERE position = 1
+
+mappingId	uni1-AssociateProfessor
+target		:uni1/academic/{a_id} a :AssociateProfessor .
+source		SELECT * FROM academic
+			WHERE position = 2
+
+mappingId	uni1-PostDoc
+target		:uni1/academic/{a_id} a :PostDoc .
+source		SELECT * FROM academic
+			WHERE position = 9
+
+mappingId	uni1-externalTeacher
+target		:uni1/academic/{a_id} a :ExternalTeacher .
+source		SELECT * FROM academic
+			WHERE position = 8
+
+mappingId	uni1-course
+target		:uni1/course/{c_id} a :Course ; :title {title} ; :isGivenAt :uni1/university .
+source		SELECT * FROM course
+
+mappingId	uni1-teaching
+target		:uni1/academic/{a_id} :teaches :uni1/course/{c_id} .
+source		SELECT * FROM teaching
+
+mappingId	uni1-registration
+target		:uni1/student/{s_id} :attends :uni1/course/{c_id} .
+source		SELECT *
+			FROM course_registration
+
+]]
+

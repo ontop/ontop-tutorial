@@ -1,0 +1,129 @@
+version: '3.4'
+services:
+
+  mysql:
+    image: mysql:8.0
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - '0.0.0.0:${MYSQL_PORT}:3306'
+    restart: always
+    #    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d
+      - data-mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+
+  pgsql:
+    image: postgres:13.2
+    ports:
+      - '0.0.0.0:${POSTGRES_PORT}:5432'
+    volumes:
+      - ./pgsql:/docker-entrypoint-initdb.d
+      - data-pgsql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: '${POSTGRES_DB}'
+      POSTGRES_USER: '${POSTGRES_USER}'
+      POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
+
+  teiid:
+    build:
+      context: ./teiid
+      dockerfile: Dockerfile
+    ports:
+      - '0.0.0.0:31000:31000'
+      - '0.0.0.0:18080:8080'
+      - '0.0.0.0:19990:9990'
+      - '0.0.0.0:35432:35432'
+    depends_on:
+      - "mysql"
+      - "pgsql"
+    volumes:
+      - teiid-standalone-configuration:/opt/jboss/wildfly/standalone/configuration
+      - teiid-domain-configuration:/opt/jboss/wildfly/domain/configuration
+
+  ontop-mysql:
+    image: ontop/ontop-endpoint:4.1.1
+    restart: unless-stopped
+    environment:
+      ONTOP_ONTOLOGY_FILE: /opt/ontop/input/university.ttl
+      ONTOP_MAPPING_FILE: /opt/ontop/input/uni1.obda
+      ONTOP_PROPERTIES_FILE: /opt/ontop/input/uni1.docker.properties
+      ONTOP_CORS_ALLOWED_ORIGINS: '*'
+      ONTOP_DEV_MODE: '${ONTOP_DEV_MODE}'
+    ports:
+      - '0.0.0.0:18081:8080'
+    volumes:
+      - ./obda:/opt/ontop/input
+      - ./jdbc:/opt/ontop/jdbc
+      - ./wait-for-it:/opt/wait-for-it
+    depends_on:
+      - "mysql"
+    entrypoint: [
+        "/opt/wait-for-it/wait-for-it.sh",
+        "mysql:3306",
+        "--timeout=0",
+        "--strict",
+        "--",
+        "/opt/ontop/entrypoint.sh" ]
+
+  ontop-pgsql:
+    image: ontop/ontop-endpoint:4.1.1
+    restart: unless-stopped
+    environment:
+      ONTOP_ONTOLOGY_FILE: /opt/ontop/input/university.ttl
+      ONTOP_MAPPING_FILE: /opt/ontop/input/uni2.obda
+      ONTOP_PROPERTIES_FILE: /opt/ontop/input/uni2.docker.properties
+      ONTOP_CORS_ALLOWED_ORIGINS: '*'
+      ONTOP_DEV_MODE: '${ONTOP_DEV_MODE}'
+    ports:
+      - '0.0.0.0:18082:8080'
+    volumes:
+      - ./obda:/opt/ontop/input
+      - ./jdbc:/opt/ontop/jdbc
+      - ./wait-for-it:/opt/wait-for-it
+    depends_on:
+      - "pgsql"
+    entrypoint: [
+        "/opt/wait-for-it/wait-for-it.sh",
+        "pgsql:5432",
+        "--timeout=0",
+        "--strict",
+        "--",
+        "/opt/ontop/entrypoint.sh" ]
+
+  ontop-teiid:
+    image: ontop/ontop-endpoint:4.1.1
+    restart: unless-stopped
+    environment:
+      ONTOP_ONTOLOGY_FILE: /opt/ontop/input/university.ttl
+      ONTOP_MAPPING_FILE: /opt/ontop/input/university.obda
+      ONTOP_PROPERTIES_FILE: /opt/ontop/input/university.docker.properties
+      ONTOP_CORS_ALLOWED_ORIGINS: '*'
+      ONTOP_DEV_MODE: '${ONTOP_DEV_MODE}'
+    ports:
+      - '0.0.0.0:8080:8080'
+    volumes:
+      - ./obda:/opt/ontop/input
+      - ./jdbc:/opt/ontop/jdbc
+      - ./wait-for-it:/opt/wait-for-it
+    depends_on:
+      - "teiid"
+    entrypoint: [
+        "/opt/wait-for-it/wait-for-it.sh",
+        "teiid:31000",
+        "--timeout=0",
+        "--strict",
+        "--",
+        "/opt/ontop/entrypoint.sh" ]
+
+volumes:
+  data-mysql: { }
+  data-pgsql: { }
+  teiid-standalone-configuration: { }
+  teiid-domain-configuration: { }
+    

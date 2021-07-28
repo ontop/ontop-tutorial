@@ -1,0 +1,105 @@
+[PrefixDeclaration]
+:		http://example.org/voc#
+ex:		http://example.org/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+foaf:		http://xmlns.com/foaf/0.1/
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+mappingId	uni1-student
+target		ex:voc#uni1/student/{s_id} a ex:voc#Student ; foaf:firstName {first_name}^^xsd:string ; foaf:lastName {last_name}^^xsd:string . 
+source		SELECT * FROM uni1.student
+
+mappingId	uni1-academic
+target		ex:voc#uni1/academic/{a_id} a ex:voc#FacultyMember ; foaf:firstName {first_name}^^xsd:string ; foaf:lastName {last_name}^^xsd:string . 
+source		SELECT * FROM uni1.academic
+
+mappingId	uni1-fullProfessor
+target		ex:voc#uni1/academic/{a_id} a ex:voc#FullProfessor . 
+source		SELECT * FROM uni1.academic
+			WHERE position = 1
+
+mappingId	uni1-AssociateProfessor
+target		ex:voc#uni1/academic/{a_id} a ex:voc#AssociateProfessor . 
+source		SELECT * FROM uni1.academic
+			WHERE position = 2
+
+mappingId	uni1-PostDoc
+target		ex:voc#uni1/academic/{a_id} a ex:voc#PostDoc . 
+source		SELECT * FROM uni1.academic
+			WHERE position = 9
+
+mappingId	uni1-externalTeacher
+target		ex:voc#uni1/academic/{a_id} a ex:voc#ExternalTeacher . 
+source		SELECT * FROM uni1.academic
+			WHERE position = 8
+
+mappingId	uni1-course
+target		ex:voc#uni1/course/{c_id} a ex:voc#Course ; ex:voc#title {title} ; ex:voc#isGivenAt ex:voc#uni1/university . 
+source		SELECT * FROM uni1.course
+
+mappingId	uni1-teaching
+target		ex:voc#uni1/academic/{a_id} ex:voc#teaches ex:voc#uni1/course/{c_id} . 
+source		SELECT * FROM uni1.teaching
+
+mappingId	uni1-registration
+target		ex:voc#uni1/student/{s_id} ex:voc#attends ex:voc#uni1/course/{c_id} . 
+source		SELECT *
+			FROM uni1.course_registration
+
+mappingId	uni2-person
+target		ex:voc#uni2/person/{pid} a foaf:Person ; foaf:firstName {fname}^^xsd:string ; foaf:lastName {lname}^^xsd:string . 
+source		SELECT * FROM uni2.person
+
+mappingId	uni2-undergraduate
+target		ex:voc#uni2/person/{pid} a ex:voc#UndergraduateStudent . 
+source		SELECT * FROM uni2.person
+			WHERE status = 1
+
+mappingId	uni2-graduate
+target		ex:voc#uni2/person/{pid} a ex:voc#GraduateStudent . 
+source		SELECT * FROM uni2.person
+			WHERE status = 2
+
+mappingId	uni2-fullProfessor
+target		ex:voc#uni2/person/{pid} a ex:voc#FullProfessor . 
+source		SELECT * FROM uni2.person
+			WHERE status = 7
+
+mappingId	uni2-associate-prof
+target		ex:voc#uni2/person/{pid} a ex:voc#AssociateProfessor . 
+source		SELECT * FROM uni2.person
+			WHERE status = 8
+
+mappingId	uni2-course
+target		ex:voc#uni2/course/{cid} a ex:voc#Course ; ex:voc#title {topic}^^xsd:string ; ex:voc#isGivenAt ex:voc#uni2/university . 
+source		SELECT * FROM uni2.course
+
+mappingId	uni2-lecturer
+target		ex:voc#uni2/person/{lecturer} ex:voc#givesLecture ex:voc#uni2/course/{cid} . 
+source		SELECT * FROM uni2.course
+
+mappingId	uni2-assistantProfessor
+target		ex:voc#uni2/person/{pid} a ex:voc#AssistantProfessor . 
+source		SELECT * FROM uni2.person
+			WHERE status = 9
+
+mappingId	uni2-postDoc
+target		ex:voc#uni2/person/{pid} a ex:voc#PostDoc . 
+source		SELECT * FROM uni2.person
+			WHERE status = 3
+
+mappingId	uni2-lab-teacher
+target		ex:voc#uni2/person/{lab_teacher} ex:voc#givesLab ex:voc#uni2/course/{cid} . 
+source		SELECT * FROM uni2.course
+
+mappingId	uni2-registration
+target		ex:voc#uni2/person/{pid} ex:voc#attends ex:voc#uni2/course/{cid} . 
+source		SELECT *
+			FROM uni2.registration
+]]
+

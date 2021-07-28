@@ -1,0 +1,33 @@
+[PrefixDeclaration]
+:		http://example.org/weather#
+geo:		http://www.opengis.net/ont/geosparql#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+sosa:		http://www.w3.org/ns/sosa/
+
+[MappingDeclaration] @collection [[
+mappingId	WeatherStation
+target		:data/station/{scode} a :WeatherStation ; rdfs:label {name_i} ; :longitude {long} ; :latitude {lat} ; geo:asWKT "POINT ({long} {lat})"^^geo:wktLiteral . 
+source		SELECT * FROM f_stations
+
+mappingId	hasSensor
+target		:data/station/{scode} :hasSensor :data/sensor/{scode}/{type} . 
+source		SELECT * FROM sensors
+
+mappingId	TemperatureSensor
+target		:data/sensor/{scode}/{type} a :TemperatureSensor . 
+source		SELECT * FROM sensors WHERE type = 'LT'
+
+mappingId	madeObservation
+target		:data/sensor/{scode}/{type} sosa:madeObservation :data/oberservation/{scode}/{type}/{date} . 
+source		SELECT * FROM sensors
+
+mappingId	observation
+target		:data/oberservation/{scode}/{type}/{date} sosa:hasSimpleResult {value} ; sosa:resultTime {date}^^xsd:dateTime . 
+source		SELECT * FROM sensors
+]]
+

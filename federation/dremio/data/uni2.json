@@ -1,0 +1,60 @@
+[
+    {
+        "course": "Information security",
+        "cid": 1,
+        "lecturer": {
+            "pid": 1,
+            "fname": "Zak",
+            "lname": "Lane"
+        },
+        "enrollers": [
+            {
+                "pid": 2,
+                "fname": "Mattie",
+                "lname": "Moses"
+            }
+        ]
+    },
+    {
+        "course": "Software factory",
+        "cid": 2,
+        "lecturer": {
+            "pid": 8,
+            "fname": "Sueann",
+            "lname": "Samora"
+        },
+        "enrollers": [
+            {
+                "pid": 3,
+                "fname": "Celine",
+                "lname": "Mendez"
+            },
+            {
+                "pid": 9,
+                "fname": "Billy",
+                "lname": "Hinkley"
+            }
+        ]
+    },
+    {
+        "course": "Introduction to programming",
+        "cid": 4,
+        "lecturer": {
+            "pid": 7,
+            "fname": "Kellie",
+            "lname": "Griffin"
+        },
+        "enrollers": [
+            {
+                "pid": 10,
+                "fname": "Larry",
+                "lname": "Alfaro"
+            },
+            {
+                "pid": 3,
+                "fname": "Celine",
+                "lname": "Mendez"
+            }
+        ]
+    }
+]
