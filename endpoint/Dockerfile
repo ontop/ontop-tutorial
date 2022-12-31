@@ -1,4 +1,4 @@
-FROM ontop/ontop-endpoint
+FROM ontop/ontop
 WORKDIR /opt/ontop
 COPY input/university-complete.ttl input/university-complete.obda input/university-complete.docker.properties input/ 
 COPY jdbc/h2-1.4.196.jar jdbc/

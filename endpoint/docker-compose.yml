@@ -10,7 +10,7 @@ services:
       - "8082:8082"
       - "9082:9082"
   ontop:
-    image: ontop/ontop-endpoint
+    image: ontop/ontop
     environment:
       ONTOP_ONTOLOGY_FILE: /opt/ontop/input/university-complete.ttl
       ONTOP_MAPPING_FILE: /opt/ontop/input/university-complete.obda
